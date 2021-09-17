@@ -43,9 +43,9 @@ func newConf(url string) *Config {
 
 func TestAuthCodeURL(t *testing.T) {
 	conf := newConf("server")
-	url := conf.AuthCodeURL("foo", AccessTypeOffline, ApprovalForce)
+	u := conf.AuthCodeURL("foo", AccessTypeOffline, ApprovalForce)
 	const want = "server/auth?access_type=offline&client_id=CLIENT_ID&prompt=consent&redirect_uri=REDIRECT_URL&response_type=code&scope=scope1+scope2&state=foo"
-	if got := url; got != want {
+	if got := u; got != want {
 		t.Errorf("got auth code URL = %q; want %q", got, want)
 	}
 }
@@ -53,9 +53,9 @@ func TestAuthCodeURL(t *testing.T) {
 func TestAuthCodeURL_CustomParam(t *testing.T) {
 	conf := newConf("server")
 	param := SetAuthURLParam("foo", "bar")
-	url := conf.AuthCodeURL("baz", param)
+	u := conf.AuthCodeURL("baz", param)
 	const want = "server/auth?client_id=CLIENT_ID&foo=bar&redirect_uri=REDIRECT_URL&response_type=code&scope=scope1+scope2&state=baz"
-	if got := url; got != want {
+	if got := u; got != want {
 		t.Errorf("got auth code = %q; want %q", got, want)
 	}
 }
@@ -68,9 +68,9 @@ func TestAuthCodeURL_Optional(t *testing.T) {
 			TokenURL: "/token-url",
 		},
 	}
-	url := conf.AuthCodeURL("")
+	u := conf.AuthCodeURL("")
 	const want = "/auth-url?client_id=CLIENT_ID&response_type=code"
-	if got := url; got != want {
+	if got := u; got != want {
 		t.Fatalf("got auth code = %q; want %q", got, want)
 	}
 }

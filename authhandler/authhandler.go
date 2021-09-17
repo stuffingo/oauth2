@@ -54,6 +54,7 @@ type authHandlerSource struct {
 	state       string
 }
 
+// Token returns a token or an error.
 func (source authHandlerSource) Token() (*oauth2.Token, error) {
 	url := source.config.AuthCodeURL(source.state)
 	code, state, err := source.authHandler(url)

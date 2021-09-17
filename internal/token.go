@@ -73,6 +73,7 @@ func (e *tokenJSON) expiry() (t time.Time) {
 
 type expirationTime int32
 
+// UnmarshalJSON unmarshal the expiration time.
 func (e *expirationTime) UnmarshalJSON(b []byte) error {
 	if len(b) == 0 || string(b) == "null" {
 		return nil
@@ -97,8 +98,18 @@ func (e *expirationTime) UnmarshalJSON(b []byte) error {
 type AuthStyle int
 
 const (
-	AuthStyleUnknown  AuthStyle = 0
+	// AuthStyleUnknown means to auto-detect which authentication
+	// style the provider wants by trying both ways and caching
+	// the successful way for the future.
+	AuthStyleUnknown AuthStyle = 0
+
+	// AuthStyleInParams sends the "client_id" and "client_secret"
+	// in the POST body as application/x-www-form-urlencoded parameters.
 	AuthStyleInParams AuthStyle = 1
+
+	// AuthStyleInHeader sends the client_id and client_password
+	// using HTTP Basic Authorization. This is an optional style
+	// described in the OAuth2 RFC 6749 section 2.3.1.
 	AuthStyleInHeader AuthStyle = 2
 )
 

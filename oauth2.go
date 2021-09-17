@@ -85,18 +85,22 @@ const (
 )
 
 var (
-	// AccessTypeOnline and AccessTypeOffline are options passed
-	// to the Options.AuthCodeURL method. They modify the
-	// "access_type" field that gets sent in the URL returned by
-	// AuthCodeURL.
+	// AccessTypeOnline option can be passed to the Options.AuthCodeURL method.
+	// It modified the "access_type" field that gets sent in the URL returned
+	// by AuthCodeURL.
 	//
-	// Online is the default if neither is specified. If your
-	// application needs to refresh access tokens when the user
+	// Online is the default if neither is specified.
+	AccessTypeOnline = SetAuthURLParam("access_type", "online")
+
+	// AccessTypeOffline option can be passed to the Options.AuthCodeURL method.
+	// It modified the "access_type" field that gets sent in the URL returned
+	// by AuthCodeURL.
+	//
+	// If your application needs to refresh access tokens when the user
 	// is not present at the browser, then use offline. This will
 	// result in your application obtaining a refresh token the
 	// first time your application exchanges an authorization
 	// code for a user.
-	AccessTypeOnline  = SetAuthURLParam("access_type", "online")
 	AccessTypeOffline = SetAuthURLParam("access_type", "offline")
 
 	// ApprovalForce forces the users to view the consent dialog
@@ -243,6 +247,8 @@ type tokenRefresher struct {
 	refreshToken string
 }
 
+// Token returns a token or an error.
+//
 // WARNING: Token is not safe for concurrent access, as it
 // updates the tokenRefresher's refreshToken field.
 // Within this package, it is used by reuseTokenSource which
@@ -306,6 +312,7 @@ type staticTokenSource struct {
 	t *Token
 }
 
+// Token returns a token or an error.
 func (s staticTokenSource) Token() (*Token, error) {
 	return s.t, nil
 }

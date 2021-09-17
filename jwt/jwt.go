@@ -98,6 +98,7 @@ type jwtSource struct {
 	conf *Config
 }
 
+// Token returns a token or an error.
 func (js jwtSource) Token() (*oauth2.Token, error) {
 	pk, err := internal.ParseKey(js.conf.PrivateKey)
 	if err != nil {

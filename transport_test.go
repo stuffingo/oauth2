@@ -39,7 +39,7 @@ type readCloseCounter struct {
 	ReadErr    error
 }
 
-func (r *readCloseCounter) Read(b []byte) (int, error) {
+func (r *readCloseCounter) Read(_ []byte) (int, error) {
 	return 0, r.ReadErr
 }
 

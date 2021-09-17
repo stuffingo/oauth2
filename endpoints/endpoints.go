@@ -8,7 +8,7 @@ package endpoints
 import (
 	"strings"
 
-	"golang.org/x/oauth2"
+	"github.com/stuffingo/oauth2"
 )
 
 // Amazon is the endpoint for Amazon.
@@ -19,7 +19,7 @@ var Amazon = oauth2.Endpoint{
 
 // Battlenet is the endpoint for Battlenet.
 var Battlenet = oauth2.Endpoint{
-	AuthURL: "https://battle.net/oauth/authorize",
+	AuthURL:  "https://battle.net/oauth/authorize",
 	TokenURL: "https://battle.net/oauth/token",
 }
 

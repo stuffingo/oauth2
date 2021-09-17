@@ -10,7 +10,7 @@ import (
 	"context"
 	"errors"
 
-	"golang.org/x/oauth2"
+	"github.com/stuffingo/oauth2"
 )
 
 // AuthorizationHandler is a 3-legged-OAuth helper that prompts

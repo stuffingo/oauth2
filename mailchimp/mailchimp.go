@@ -3,10 +3,10 @@
 // license that can be found in the LICENSE file.
 
 // Package mailchimp provides constants for using OAuth2 to access MailChimp.
-package mailchimp // import "golang.org/x/oauth2/mailchimp"
+package mailchimp // import "github.com/stuffingo/oauth2/mailchimp"
 
 import (
-	"golang.org/x/oauth2"
+	"github.com/stuffingo/oauth2"
 )
 
 // Endpoint is MailChimp's OAuth 2.0 endpoint.

@@ -13,7 +13,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"golang.org/x/oauth2"
+	"github.com/stuffingo/oauth2"
 )
 
 type urlCredentialSource struct {

@@ -316,6 +316,9 @@ func testExchangeRequest_JSONResponse_expiry(t *testing.T, exp string, want, nul
 	if !want {
 		return
 	}
+	if tok == nil {
+		t.Fatal("Token is nil.")
+	}
 	if !tok.Valid() {
 		t.Fatalf("Token invalid. Got: %#v", tok)
 	}

@@ -152,7 +152,7 @@ func tokenFromInternal(t *internal.Token) *Token {
 
 // retrieveToken takes a *Config and uses that to retrieve an *internal.Token.
 // This token is then mapped from *internal.Token into an *oauth2.Token which is returned along
-// with an error..
+// with an error.
 func retrieveToken(ctx context.Context, c *Config, v url.Values) (*Token, error) {
 	tk, err := internal.RetrieveToken(ctx, c.ClientID, c.ClientSecret, c.Endpoint.TokenURL, v, internal.AuthStyle(c.Endpoint.AuthStyle))
 	if err != nil {

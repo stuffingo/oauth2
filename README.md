@@ -17,4 +17,3 @@ Or you can manually git clone the repository to
 See pkg.go.dev for further documentation and examples.
 
 * [pkg.go.dev/github.com/stuffingo/oauth2](https://pkg.go.dev/github.com/stuffingo/oauth2)
-* [pkg.go.dev/github.com/stuffingo/oauth2/google](https://pkg.go.dev/github.com/stuffingo/oauth2/google)

@@ -1,8 +1,5 @@
 # OAuth2 for Go
 
-[![Go Reference](https://pkg.go.dev/badge/golang.org/x/oauth2.svg)](https://pkg.go.dev/golang.org/x/oauth2)
-[![Build Status](https://travis-ci.org/golang/oauth2.svg?branch=master)](https://travis-ci.org/golang/oauth2)
-
 oauth2 package contains a client implementation for OAuth 2.0 spec.
 
 ## Installation

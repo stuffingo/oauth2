@@ -290,12 +290,12 @@ func TestExchangeRequest_JSONResponse_Expiry(t *testing.T) {
 		{"wrong_value", `"expires_in": "zzz"`, false, false},
 	} {
 		t.Run(c.name, func(t *testing.T) {
-			testExchangeRequest_JSONResponse_expiry(t, c.expires, c.want, c.nullExpires)
+			testExchangeRequestJSONResponseExpiry(t, c.expires, c.want, c.nullExpires)
 		})
 	}
 }
 
-func testExchangeRequest_JSONResponse_expiry(t *testing.T, exp string, want, nullExpires bool) {
+func testExchangeRequestJSONResponseExpiry(t *testing.T, exp string, want, nullExpires bool) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.Write([]byte(fmt.Sprintf(`{"access_token": "90d", "scope": "user", "token_type": "bearer", %s}`, exp)))

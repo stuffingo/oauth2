@@ -103,7 +103,7 @@ func TestTokenExchange_StateMismatch(t *testing.T) {
 	}
 
 	_, err := TokenSource(context.Background(), conf, "testState", authhandler).Token()
-	if want_err := "state mismatch in 3-legged-OAuth flow"; err == nil || err.Error() != want_err {
-		t.Errorf("err = %q; want %q", err, want_err)
+	if wantErr := "state mismatch in 3-legged-OAuth flow"; err == nil || err.Error() != wantErr {
+		t.Errorf("err = %q; want %q", err, wantErr)
 	}
 }

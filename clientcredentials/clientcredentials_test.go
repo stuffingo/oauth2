@@ -27,14 +27,6 @@ func newConf(serverURL string) *Config {
 	}
 }
 
-type mockTransport struct {
-	rt func(req *http.Request) (resp *http.Response, err error)
-}
-
-func (t *mockTransport) RoundTrip(req *http.Request) (resp *http.Response, err error) {
-	return t.rt(req)
-}
-
 func TestTokenSourceGrantTypeOverride(t *testing.T) {
 	wantGrantType := "password"
 	var gotGrantType string

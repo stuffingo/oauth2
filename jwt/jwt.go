@@ -21,7 +21,7 @@ import (
 
 	"github.com/stuffingo/oauth2"
 	"github.com/stuffingo/oauth2/internal"
-	"github.com/stuffingo/oauth2/jws"
+	"github.com/stuffingo/oauth2/internal/jws"
 )
 
 var (

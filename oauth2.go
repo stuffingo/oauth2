@@ -21,14 +21,6 @@ import (
 	"github.com/stuffingo/oauth2/internal"
 )
 
-// RegisterBrokenAuthHeaderProvider previously did something. It is now a no-op.
-//
-// Deprecated: this function no longer does anything. Caller code that
-// wants to avoid potential extra HTTP requests made during
-// auto-probing of the provider's auth style should set
-// Endpoint.AuthStyle.
-func RegisterBrokenAuthHeaderProvider(tokenURL string) {}
-
 // Config describes a typical 3-legged OAuth2 flow, with both the
 // client application information and the server's endpoint URLs.
 // For the client credentials 2-legged OAuth2 flow, see the clientcredentials

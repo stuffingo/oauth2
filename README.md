@@ -2,6 +2,9 @@
 
 oauth2 package contains a client implementation for OAuth 2.0 spec.
 
+This is a fork of [golang.org/x/oauth2](https://golang.org/x/oauth2).
+
+
 ## Installation
 
 ~~~~

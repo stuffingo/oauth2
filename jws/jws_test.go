@@ -17,7 +17,7 @@ func TestSignAndVerify(t *testing.T) {
 		Typ:       "JWT",
 	}
 	payload := &ClaimSet{
-		Iss: "http://google.com/",
+		Iss: "http://example.com/",
 		Aud: "",
 		Exp: 3610,
 		Iat: 10,

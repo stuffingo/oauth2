@@ -370,8 +370,8 @@ func TestExchangeRequest_NonBasicAuth(t *testing.T) {
 	conf := &Config{
 		ClientID: "CLIENT_ID",
 		Endpoint: Endpoint{
-			AuthURL:   "https://accounts.google.com/auth",
-			TokenURL:  "https://accounts.google.com/token",
+			AuthURL:   "https://example.com/auth",
+			TokenURL:  "https://example.com/token",
 			AuthStyle: AuthStyleInParams,
 		},
 	}

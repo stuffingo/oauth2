@@ -93,14 +93,6 @@ func (e *expirationTime) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// RegisterBrokenAuthHeaderProvider previously did something. It is now a no-op.
-//
-// Deprecated: this function no longer does anything. Caller code that
-// wants to avoid potential extra HTTP requests made during
-// auto-probing of the provider's auth style should set
-// Endpoint.AuthStyle.
-func RegisterBrokenAuthHeaderProvider(tokenURL string) {}
-
 // AuthStyle is a copy of the github.com/stuffingo/oauth2 package's AuthStyle type.
 type AuthStyle int
 

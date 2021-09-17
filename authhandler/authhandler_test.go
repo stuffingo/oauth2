@@ -24,15 +24,21 @@ func TestTokenExchange_Success(t *testing.T) {
 	}
 
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		r.ParseForm()
+		err := r.ParseForm()
+		if err != nil {
+			t.Fatalf("ParseForm returned an error: %v", err)
+		}
 		if r.Form.Get("code") == "testCode" {
 			w.Header().Set("Content-Type", "application/json")
-			w.Write([]byte(`{
+			_, err := w.Write([]byte(`{
 				"access_token": "90d64460d14870c08c81352a05dedd3465940a7c",
 				"scope": "pubsub",
 				"token_type": "bearer",
 				"expires_in": 3600
 			}`))
+			if err != nil {
+				t.Fatalf("Write returned an error: %v", err)
+			}
 		}
 	}))
 	defer ts.Close()
@@ -75,12 +81,15 @@ func TestTokenExchange_StateMismatch(t *testing.T) {
 
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{
+		_, err := w.Write([]byte(`{
 			"access_token": "90d64460d14870c08c81352a05dedd3465940a7c",
 			"scope": "pubsub",
 			"token_type": "bearer",
 			"expires_in": 3600
 		}`))
+		if err != nil {
+			t.Fatalf("Write returned an error: %v", err)
+		}
 	}))
 	defer ts.Close()
 

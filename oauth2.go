@@ -47,9 +47,7 @@ type Config struct {
 	ClientSecret string
 
 	// Endpoint contains the resource server's token endpoint
-	// URLs. These are constants specific to each server and are
-	// often available via site-specific packages, such as
-	// google.Endpoint or github.Endpoint.
+	// URLs. These are constants specific to each server.
 	Endpoint Endpoint
 
 	// RedirectURL is the URL to redirect users going through

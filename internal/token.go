@@ -20,8 +20,6 @@ import (
 	"strings"
 	"sync"
 	"time"
-
-	"golang.org/x/net/context/ctxhttp"
 )
 
 // Token represents the credentials used to authorize
@@ -230,7 +228,7 @@ func RetrieveToken(ctx context.Context, clientID, clientSecret, tokenURL string,
 }
 
 func doTokenRoundTrip(ctx context.Context, req *http.Request) (*Token, error) {
-	r, err := ctxhttp.Do(ctx, ContextClient(ctx), req)
+	r, err := ctxhttpDo(ctx, ContextClient(ctx), req)
 	if err != nil {
 		return nil, err
 	}
@@ -292,4 +290,34 @@ type RetrieveError struct {
 
 func (r *RetrieveError) Error() string {
 	return fmt.Sprintf("oauth2: cannot fetch token: %v\nResponse: %s", r.Response.Status, r.Body)
+}
+
+// ctxhttpDo sends an HTTP request with the provided http.Client and returns
+// an HTTP response.
+//
+// If the client is nil, http.DefaultClient is used.
+//
+// The provided ctx must be non-nil. If it is canceled or times out,
+// ctx.Err() will be returned.
+//
+// This function is borrowed from golang.org/x/net/context/ctxhttp (original
+// function name: "Do"). Here is the specific copyright notice:
+// Copyright 2016 The Go Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+func ctxhttpDo(ctx context.Context, client *http.Client, req *http.Request) (*http.Response, error) {
+	if client == nil {
+		client = http.DefaultClient
+	}
+	resp, err := client.Do(req.WithContext(ctx))
+	// If we got an error, and the context has been canceled,
+	// the context's error is probably more useful.
+	if err != nil {
+		select {
+		case <-ctx.Done():
+			err = ctx.Err()
+		default:
+		}
+	}
+	return resp, err
 }
